@@ -266,7 +266,7 @@ public class CommunicationEventServices {
                     errorMessages.addAll(e.getMessageList());
                 }
             }
-    	} catch (Exception eey) {
+        } catch (Exception eey) {
             return ServiceUtil.returnError(eey.getMessage());
         }
 
