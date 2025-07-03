@@ -15,7 +15,7 @@ software distributed under the License is distributed on an
 "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
-under the License.
+under the License.  
 -->
 
 <entity-engine-xml>
@@ -449,7 +449,7 @@ under the License.
     <Enumeration description="Organization party" enumId="ORGANIZATION_PARTY" sequenceId="01" enumTypeId="GLOBAL_PREFERENCES"/>
     <Enumeration description="Visual Theme" enumId="VISUAL_THEME" sequenceId="02" enumTypeId="GLOBAL_PREFERENCES"/>
 
-    <PartyIdentificationType partyIdentificationTypeId="PARTY_IMPORT" description="Original ID in the system where this record was imported from"/>
+    <!--PartyIdentificationType partyIdentificationTypeId="PARTY_IMPORT" description="Original ID in the system where this record was imported from"/-->
 
     <!-- Party Manager security -->
     <SecurityPermission description="View operations in the Party Manager." permissionId="PARTYMGR_VIEW"/>

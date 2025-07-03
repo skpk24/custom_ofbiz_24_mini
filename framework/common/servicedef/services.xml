@@ -290,7 +290,7 @@ under the License.
     </service>
 
 
-    <!-- Keyword Thesaurus services -->
+    <!-- Keyword Thesaurus services 
     <service name="createKeywordThesaurus" default-entity-name="KeywordThesaurus" engine="groovy"
             location="component://common/src/main/groovy/org/apache/ofbiz/common/CommonServicesScript.groovy" invoke="createKeywordThesaurus" auth="true">
         <description>Create a Keyword Thesaurus</description>
@@ -311,10 +311,10 @@ under the License.
         <permission-service service-name="catalogPermissionCheck" main-action="DELETE"/>
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <override name="alternateKeyword" optional="true"/>
-    </service>
+    </service>-->
 
     <!-- Uom conversion service -->
-    <service name="createUomConversionDated" default-entity-name="UomConversionDated" engine="entity-auto" invoke="create" auth="true">
+    <!--service name="createUomConversionDated" default-entity-name="UomConversionDated" engine="entity-auto" invoke="create" auth="true">
         <description>Create a new dated UOM converesion entity</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
@@ -355,7 +355,7 @@ under the License.
         <permission-service service-name="commonGenericPermission" main-action="VIEW"/>
         <auto-attributes include="pk" mode="IN"/>
         <attribute name="exist" mode="OUT" type="Boolean"/>
-    </service>
+    </service-->
 
 
     <service name="getFileUploadProgressStatus" engine="groovy" location="component://common/src/main/groovy/org/apache/ofbiz/common/CommonServicesScript.groovy" invoke="getFileUploadProgressStatus" auth="false">
@@ -918,7 +918,7 @@ under the License.
         <description>Delete a UserPrefGroupType</description>
         <auto-attributes include="pk" mode="IN"/>
     </service>
-    <service name="createUomType" engine="entity-auto" invoke="create" default-entity-name="UomType" auth="true">
+    <!--service name="createUomType" engine="entity-auto" invoke="create" default-entity-name="UomType" auth="true">
         <description>Create UomType Record</description>
         <auto-attributes include="pk" mode="INOUT" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
@@ -940,7 +940,7 @@ under the License.
     <service name="deleteUomGroup" engine="entity-auto" invoke="delete" default-entity-name="UomGroup" auth="true">
         <description>Delete UomGroup record</description>
         <auto-attributes include="pk" mode="IN"/>
-    </service>
+    </service-->
 
     <!-- StatusValidChange services -->
     <service name="createStatusValidChange" default-entity-name="StatusValidChange" engine="entity-auto" invoke="create" auth="true">
@@ -958,7 +958,7 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
 
-    <service name="createUom" engine="entity-auto" invoke="create" default-entity-name="Uom" auth="true">
+    <!--service name="createUom" engine="entity-auto" invoke="create" default-entity-name="Uom" auth="true">
         <description>Create Uom Record</description>
         <auto-attributes include="pk" mode="INOUT" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
@@ -971,7 +971,7 @@ under the License.
     <service name="deleteUom" engine="entity-auto" invoke="delete" default-entity-name="Uom" auth="true">
         <description>Delete Uom Record</description>
         <auto-attributes include="pk" mode="IN"/>
-    </service>
+    </service-->
 
     <service name="SetTimeZoneFromBrowser" engine="groovy" location="component://common/src/main/groovy/org/apache/ofbiz/common/SetTimeZoneFromBrowser.groovy" invoke="setTimeZoneFromBrowser" auth="true">
         <description>Set locale from browser.</description>

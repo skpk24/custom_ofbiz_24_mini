@@ -596,7 +596,7 @@ under the License.
         <attribute name="partyIdFrom" type="String" mode="IN" optional="false"/>
         <attribute name="partyIdTo" type="String" mode="IN" optional="false"/>
     </service>
-    <service name="createPartyFtpAddress" engine="groovy"
+    <!-- service name="createPartyFtpAddress" engine="groovy"
              location="component://party/src/main/groovy/org/apache/ofbiz/party/contact/ContactMechServicesScript.groovy" invoke="createPartyFtpAddress" auth="true">
         <description>Create an Ftp Address associated to a party</description>
         <permission-service service-name="partyContactMechPermissionCheck" main-action="CREATE"/>
@@ -613,7 +613,7 @@ under the License.
         <auto-attributes entity-name="PartyContactMech" mode="IN" optional="true"/>
         <auto-attributes entity-name="FtpAddress" mode="IN" optional="true"/>
         <attribute name="contactMechId" type="String" mode="INOUT"/>
-    </service>
+    </service-->
 
     <!-- PartyContactMechPurpose services -->
     <service name="createPartyContactMechPurpose" engine="java"

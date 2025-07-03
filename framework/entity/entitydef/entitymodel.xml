@@ -58,5 +58,12 @@ under the License.
       <field name="seqId" type="numeric"></field>
       <prim-key field="seqName"/>
     </entity>
+    
+    <entity entity-name="Component" package-name="org.apache.ofbiz.entity.tenant">
+        <description>Component Entity</description>
+        <field name="componentName" type="name"></field>
+        <field name="rootLocation" type="description"></field>
+        <prim-key field="componentName"/>
+    </entity>
 
 </entitymodel>

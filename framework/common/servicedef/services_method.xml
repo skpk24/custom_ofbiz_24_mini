@@ -24,7 +24,7 @@ under the License.
     <vendor>OFBiz</vendor>
     <version>1.0</version>
 
-    <service name="createCustomMethod" engine="entity-auto" invoke="create" default-entity-name="CustomMethod" auth="true">
+    <!--service name="createCustomMethod" engine="entity-auto" invoke="create" default-entity-name="CustomMethod" auth="true">
         <description>Create a Custom Method</description>
         <auto-attributes include="pk" mode="INOUT" optional="true"/>
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
@@ -52,6 +52,6 @@ under the License.
     <service name="deleteCustomMethodType" engine="entity-auto" invoke="delete" default-entity-name="CustomMethodType" auth="true">
         <description>Delete a Custom Method Type</description>
         <auto-attributes include="pk" mode="IN"/>
-    </service>
+    </service-->
     
 </services>

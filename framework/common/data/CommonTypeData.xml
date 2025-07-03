@@ -69,7 +69,7 @@ under the License.
     <StatusItem description="Not-Synchronized" sequenceId="01" statusCode="NOT_SYNCHRONIZED" statusId="NOT_SYNCHRONIZED" statusTypeId="SYNCHRONIZE_STATUS"/>
     <StatusItem description="Synchronized" sequenceId="02" statusCode="SYNCHRONIZED" statusId="SYNCHRONIZED" statusTypeId="SYNCHRONIZE_STATUS"/>
 
-    <UomType description="Currency" hasTable="N" uomTypeId="CURRENCY_MEASURE"/>
+    <!--UomType description="Currency" hasTable="N" uomTypeId="CURRENCY_MEASURE"/>
     <UomType description="Data Size" hasTable="N" uomTypeId="DATA_MEASURE"/>
     <UomType description="Data Speed" hasTable="N" uomTypeId="DATASPD_MEASURE"/>
     <UomType description="Time/Frequency" hasTable="N" uomTypeId="TIME_FREQ_MEASURE"/>
@@ -80,7 +80,7 @@ under the License.
     <UomType description="Weight" hasTable="N" uomTypeId="WEIGHT_MEASURE"/>
     <UomType description="Energy" hasTable="N" uomTypeId="ENERGY_MEASURE"/>
     <UomType description="Temperature" hasTable="N" uomTypeId="TEMP_MEASURE"/>
-    <UomType description="Other" hasTable="N" uomTypeId="OTHER_MEASURE"/>
+    <UomType description="Other" hasTable="N" uomTypeId="OTHER_MEASURE"/-->
 
     <!-- User preferences seed data -->
     <UserPrefGroupType userPrefGroupTypeId="GLOBAL_PREFERENCES" description="Global preferences"/>
@@ -147,9 +147,9 @@ under the License.
     <Enumeration enumId="JM_OFBIZ_INS_0" enumTypeId="JM_OFBIZ_INSTANCE" enumCode="_NA_" sequenceId="00" description="ALL instance"/>
     <Enumeration enumId="JM_OFBIZ_INS_1" enumTypeId="JM_OFBIZ_INSTANCE" enumCode="ofbiz1" sequenceId="01" description="OFBiz instance 1"/>
 
-    <!-- Telecom Services Seed Data -->
+    <!-- Telecom Services Seed Data 
     <EnumerationType enumTypeId="TELECOM_MSG" description="Telcom Message Type Enum" hasTable="N"/>
     <TelecomMethodType telecomMethodTypeId="SMS" description="Short Messaging Service Method"/>
     <TelecomMethodType telecomMethodTypeId="WHATSAPP" description="WhatsApp Messaging Service Method"/>
-    <CustomMethodType customMethodTypeId="TELECOM_GATEWAY" description="Telecom Gateway Custom Method"/>
+    <CustomMethodType customMethodTypeId="TELECOM_GATEWAY" description="Telecom Gateway Custom Method"/>-->
 </entity-engine-xml>

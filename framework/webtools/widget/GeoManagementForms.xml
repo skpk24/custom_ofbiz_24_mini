@@ -46,9 +46,9 @@
         <field name="latitude" title="${uiLabelMap.CommonLatitude}"><display/></field>
         <field name="longitude" title="${uiLabelMap.CommonLongitude}"><display/></field>
         <field name="elevation" title="${uiLabelMap.Elevation}"><display/></field>
-        <field name="elevationUomId" title="${uiLabelMap.CommonUom}">
+        <!--field name="elevationUomId" title="${uiLabelMap.CommonUom}">
             <display-entity entity-name="Uom" key-field-name="uomId" description="${abbreviation}"/>
-        </field>
+        </field-->
         <field name="information"><display/></field>
     </form>
     <form name="ListGeos" extends-resource="component://common/widget/LookupForms.xml" extends="ListLookupGeo" paginate-target="${currentUrl}"
@@ -86,9 +86,9 @@
         <field name="latitude"  title="${uiLabelMap.CommonLatitude}"><display/></field>
         <field name="longitude" title="${uiLabelMap.CommonLongitude}"><display/></field>
         <field name="elevation"  title="${uiLabelMap.Elevation}" title-area-style="align-right" widget-area-style="align-right"><display/></field>
-        <field name="elevationUomId" title="${uiLabelMap.CommonUom}">
+        <!--field name="elevationUomId" title="${uiLabelMap.CommonUom}">
             <display-entity entity-name="Uom" key-field-name="uomId" description="${abbreviation}"/>
-        </field>
+        </field-->
         <field name="information"><display/></field>
     </grid>
     <form name="EditGeo" type="single" target="updateGeo" title="" default-map-name="geo"

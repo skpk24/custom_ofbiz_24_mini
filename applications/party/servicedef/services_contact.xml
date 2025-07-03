@@ -90,7 +90,7 @@ under the License.
         <attribute name="contactMechId" type="String" mode="INOUT" optional="false"/>
         <attribute name="emailAddress" type="String" mode="IN" optional="false"/>
     </service>
-    <service name="createFtpAddress" default-entity-name="FtpAddress" engine="groovy" invoke="createFtpAddress"
+    <!--service name="createFtpAddress" default-entity-name="FtpAddress" engine="groovy" invoke="createFtpAddress"
              location="component://party/src/main/groovy/org/apache/ofbiz/party/contact/ContactMechServicesScript.groovy">
         <description>create FtpAddress</description>
         <permission-service service-name="partyBasePermissionCheck" main-action="CREATE"/>
@@ -103,9 +103,9 @@ under the License.
         <permission-service service-name="partyBasePermissionCheck" main-action="UPDATE"/>
         <auto-attributes mode="IN" include="pk"/>
         <auto-attributes mode="IN" include="nonpk" optional="true"/>
-        <attribute name="contactMechId" type="String" mode="INOUT"/> <!-- the out paramater is the id of the new address -->
-        <attribute name="oldContactMechId" type="String" mode="OUT"/> <!-- this is the id of the old address -->
-    </service>
+        <attribute name="contactMechId" type="String" mode="INOUT"/--> <!-- the out paramater is the id of the new address -->
+        <!--attribute name="oldContactMechId" type="String" mode="OUT"/--> <!-- this is the id of the old address -->
+    <!--/service-->
 
     <service name="createContactMechType" default-entity-name="ContactMechType" engine="entity-auto" invoke="create" auth="true">
         <description>Create a new ContactMech Type Record</description>

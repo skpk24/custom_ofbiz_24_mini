@@ -19,7 +19,7 @@ under the License.
 -->
 
 <entity-engine-xml>
-    <Uom abbreviation="CRC" description="Costa Rica Colon" uomId="CRC" numericCode="188" uomTypeId="CURRENCY_MEASURE"/>
+    <!--Uom abbreviation="CRC" description="Costa Rica Colon" uomId="CRC" numericCode="188" uomTypeId="CURRENCY_MEASURE"/>
     <Uom abbreviation="COP" description="Colombian Peso" uomId="COP" numericCode="170" uomTypeId="CURRENCY_MEASURE"/>
     <Uom abbreviation="CNY" description="Chinese Rrenminbi (Yuan)" uomId="CNY" numericCode="156" uomTypeId="CURRENCY_MEASURE"/>
     <Uom abbreviation="CLP" description="Chilean Peso" uomId="CLP" numericCode="152" uomTypeId="CURRENCY_MEASURE"/>
@@ -37,10 +37,10 @@ under the License.
     <Uom abbreviation="BHD" description="Bahrain Dinar" uomId="BHD" numericCode="048" uomTypeId="CURRENCY_MEASURE"/>
     <Uom abbreviation="BGN" description="Bulgarian Lev" uomId="BGN" numericCode="975" uomTypeId="CURRENCY_MEASURE"/>
     <Uom abbreviation="BDT" description="Bangladesh Taka" uomId="BDT" numericCode="050" uomTypeId="CURRENCY_MEASURE"/>
-    <Uom abbreviation="BBD" description="Barbados Dollar" uomId="BBD" numericCode="052" uomTypeId="CURRENCY_MEASURE"/>
+    <Uom abbreviation="BBD" description="Barbados Dollar" uomId="BBD" numericCode="052" uomTypeId="CURRENCY_MEASURE"/-->
     <!--https://www.currency-iso.org/dam/isocy/downloads/dl_currency_iso_amendment_96.pdf
     This amendment changes the currency for BOSNIA AND HERZEGOVINA from the Dinar to the Convertible Marks-->
-    <Uom abbreviation="BAM" description="Convertible Marks" uomId="BAM" numericCode="977" uomTypeId="CURRENCY_MEASURE"/>
+    <!--Uom abbreviation="BAM" description="Convertible Marks" uomId="BAM" numericCode="977" uomTypeId="CURRENCY_MEASURE"/>
     <Uom abbreviation="AZN" description="Azerbaijan Manat" uomId="AZN" numericCode="944" uomTypeId="CURRENCY_MEASURE"/>
     <Uom abbreviation="AWG" description="Aruban Guilder" uomId="AWG" numericCode="533" uomTypeId="CURRENCY_MEASURE"/>
     <Uom abbreviation="AUD" description="Australian Dollar" uomId="AUD" numericCode="036" uomTypeId="CURRENCY_MEASURE"/>
@@ -169,5 +169,5 @@ under the License.
     <Uom abbreviation="ZAR" description="South African Rand" uomId="ZAR" numericCode="710" uomTypeId="CURRENCY_MEASURE"/>
     <Uom abbreviation="ZMW" description="Zambian Kwacha" uomId="ZMW" numericCode="967" uomTypeId="CURRENCY_MEASURE"/>
     <Uom abbreviation="ZRN" description="New Zaire" uomId="ZRN" numericCode="180" uomTypeId="CURRENCY_MEASURE"/>
-    <Uom abbreviation="ZWL" description="Zimbabwe Dollar" uomId="ZWL" numericCode="932" uomTypeId="CURRENCY_MEASURE"/>
+    <Uom abbreviation="ZWL" description="Zimbabwe Dollar" uomId="ZWL" numericCode="932" uomTypeId="CURRENCY_MEASURE"/-->
 </entity-engine-xml>

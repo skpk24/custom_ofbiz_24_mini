@@ -298,9 +298,9 @@ under the License.
         <relation type="one" fk-name="GEOPOINT_TYPE" title="GeoPointType" rel-entity-name="Enumeration">
             <key-map field-name="geoPointTypeEnumId" rel-field-name="enumId"/>
         </relation>
-        <relation type="one" fk-name="GPT_ELEV_UOM" title="Elevation" rel-entity-name="Uom">
+        <!--relation type="one" fk-name="GPT_ELEV_UOM" title="Elevation" rel-entity-name="Uom">
             <key-map field-name="elevationUomId" rel-field-name="uomId"/>
-        </relation>
+        </relation-->
     </entity>
     <entity entity-name="GeoType" package-name="org.apache.ofbiz.common.geo" default-resource-name="CommonEntityLabels"
         title="Geographic Boundary Type">
@@ -322,7 +322,7 @@ under the License.
   <!-- org.apache.ofbiz.common.keyword -->
   <!-- ========================================================= -->
 
-    <entity entity-name="KeywordThesaurus"
+    <!--entity entity-name="KeywordThesaurus"
             package-name="org.apache.ofbiz.common.keyword">
       <field name="enteredKeyword" type="long-varchar"></field>
       <field name="alternateKeyword" type="long-varchar"></field>
@@ -332,7 +332,7 @@ under the License.
       <relation type="one" fk-name="KW_THRS_RLENM" title="Relationship" rel-entity-name="Enumeration">
         <key-map field-name="relationshipEnumId" rel-field-name="enumId"/>
       </relation>
-    </entity>
+    </entity-->
 
   <!-- ========================================================= -->
   <!-- org.apache.ofbiz.common.language -->
@@ -354,7 +354,7 @@ under the License.
     <!-- org.apache.ofbiz.common.method -->
     <!-- ========================================================= -->
 
-    <entity entity-name="CustomMethod"
+    <!--entity entity-name="CustomMethod"
         package-name="org.apache.ofbiz.common.method"
         default-resource-name="CommonEntityLabels"
         title="Custom Method">
@@ -378,7 +378,7 @@ under the License.
         <relation type="one" fk-name="CME_TYPE_PARENT" title="Parent" rel-entity-name="CustomMethodType">
             <key-map field-name="parentTypeId" rel-field-name="customMethodTypeId"/>
         </relation>
-    </entity>
+    </entity-->
 
   <!-- ========================================================= -->
   <!-- org.apache.ofbiz.common.note -->
@@ -425,9 +425,9 @@ under the License.
       <field name="periodLength" type="numeric"></field>
       <field name="uomId" type="id"></field>
       <prim-key field="periodTypeId"/>
-      <relation type="one" fk-name="PER_TYPE_UOM" rel-entity-name="Uom">
+      <!--relation type="one" fk-name="PER_TYPE_UOM" rel-entity-name="Uom">
         <key-map field-name="uomId"/>
-      </relation>
+      </relation-->
     </entity>
 
   <!-- ========================================================= -->
@@ -504,7 +504,7 @@ under the License.
   <!-- org.apache.ofbiz.common.uom -->
   <!-- ========================================================= -->
 
-    <entity entity-name="Uom"
+    <!--entity entity-name="Uom"
             package-name="org.apache.ofbiz.common.uom"
             default-resource-name="CommonEntityLabels"
             title="Unit Of Measure">
@@ -618,7 +618,7 @@ under the License.
       <relation type="one" fk-name="UOM_TYPE_PARENT" title="Parent" rel-entity-name="UomType">
         <key-map field-name="parentTypeId" rel-field-name="uomTypeId"/>
       </relation>
-    </entity>
+    </entity-->
 
   <!-- ========================================================= -->
   <!-- org.apache.ofbiz.common.user -->
@@ -896,7 +896,7 @@ under the License.
     <!-- ============================ -->
     <!-- org.apache.ofbiz.common.telecom -->
     <!-- ============================ -->
-    <entity entity-name="TelecomMethodType" 
+    <!--entity entity-name="TelecomMethodType" 
             package-name="org.apache.ofbiz.common.telecom"
             title="Telecom Method Type">
         <field name="telecomMethodTypeId" type="id"></field>
@@ -910,5 +910,5 @@ under the License.
         <field name="telecomGatewayConfigId" type="id"></field>
         <field name="description" type="description"></field>
         <prim-key field="telecomGatewayConfigId"/>
-    </entity>
+    </entity-->
 </entitymodel>

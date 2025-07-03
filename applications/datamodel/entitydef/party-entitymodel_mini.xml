@@ -550,24 +550,6 @@ under the License.
         <index-field name="contactNumber"/>
       </index>
     </entity>
-    <entity entity-name="FtpAddress"
-            package-name="org.apache.ofbiz.party.contact"
-            title="Ftp server">
-      <field name="contactMechId" type="id"/>
-      <field name="hostname" type="long-varchar"/>
-      <field name="port" type="numeric"/>
-      <field name="username" type="long-varchar"/>
-      <field name="ftpPassword" type="long-varchar" encrypt="true"/>
-      <field name="binaryTransfer" type="indicator"/>
-      <field name="filePath" type="long-varchar"/>
-      <field name="zipFile" type="indicator"/>
-      <field name="passiveMode" type="indicator"/>
-      <field name="defaultTimeout" type="numeric"/>
-      <prim-key field="contactMechId"/>
-      <relation type="one" fk-name="FTP_SRV_CMECH" rel-entity-name="ContactMech">
-        <key-map field-name="contactMechId"/>
-      </relation>
-    </entity>
     <entity entity-name="ValidContactMechRole"
             package-name="org.apache.ofbiz.party.contact"
             title="Valid Contact Mechanism Role">
@@ -588,7 +570,7 @@ under the License.
         <member-entity entity-alias="CM" entity-name="ContactMech"/>
         <member-entity entity-alias="PA" entity-name="PostalAddress"/>
         <member-entity entity-alias="TN" entity-name="TelecomNumber"/>
-        <member-entity entity-alias="FA" entity-name="FtpAddress"/>
+        <!--member-entity entity-alias="FA" entity-name="FtpAddress"/-->
         <alias-all entity-alias="CM"/>
         <alias-all entity-alias="PA" prefix="pa">
             <exclude field="contactMechId"/>
@@ -596,18 +578,18 @@ under the License.
         <alias-all entity-alias="TN" prefix="tn">
             <exclude field="contactMechId"/>
         </alias-all>
-        <alias-all entity-alias="FA" prefix="fa">
+        <!-- alias-all entity-alias="FA" prefix="fa">
             <exclude field="contactMechId"/>
-        </alias-all>
+        </alias-all-->
         <view-link entity-alias="CM" rel-entity-alias="PA" rel-optional="true">
             <key-map field-name="contactMechId"/>
         </view-link>
         <view-link entity-alias="CM" rel-entity-alias="TN" rel-optional="true">
             <key-map field-name="contactMechId"/>
         </view-link>
-        <view-link entity-alias="CM" rel-entity-alias="FA" rel-optional="true">
+        <!--view-link entity-alias="CM" rel-entity-alias="FA" rel-optional="true">
             <key-map field-name="contactMechId"/>
-        </view-link>
+        </view-link-->
     </view-entity>
     <view-entity entity-name="PartyAndContactMech"
         package-name="org.apache.ofbiz.party.contact"
@@ -732,9 +714,9 @@ under the License.
       <relation type="one" fk-name="PARTY_LMCUL" title="LastModifiedBy" rel-entity-name="UserLogin">
         <key-map field-name="lastModifiedByUserLogin" rel-field-name="userLoginId"/>
       </relation>
-      <relation type="one" fk-name="PARTY_PREF_CRNCY" rel-entity-name="Uom">
+      <!--relation type="one" fk-name="PARTY_PREF_CRNCY" rel-entity-name="Uom">
         <key-map field-name="preferredCurrencyUomId" rel-field-name="uomId"/>
-      </relation>
+      </relation-->
       <relation type="one" fk-name="PARTY_STATUSITM" rel-entity-name="StatusItem">
         <key-map field-name="statusId"/>
       </relation>

@@ -1017,7 +1017,7 @@ public class GenericDelegator implements Delegator {
             this.clearCacheLine(primaryKey);
 
             if (SAVE_ENTITY_SYNC_REMOVE_INFO) {
-                this.saveEntitySyncRemoveInfo(primaryKey);
+                //this.saveEntitySyncRemoveInfo(primaryKey);
             }
 
             if (testMode) {

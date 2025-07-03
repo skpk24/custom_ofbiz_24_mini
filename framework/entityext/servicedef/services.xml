@@ -166,7 +166,7 @@ under the License.
         <attribute name="groupName" type="String" mode="IN" optional="true" default-value="org.apache.ofbiz"/>
     </service>
 
-    <service name="cleanSyncRemoveInfo" engine="java"
+    <!--service name="cleanSyncRemoveInfo" engine="java"
             location="org.apache.ofbiz.entityext.synchronization.EntitySyncServices" invoke="cleanSyncRemoveInfo" auth="true" transaction-timeout="600">
         <description>Clean EntitySyncRemove Info - Generally should be run asynchronously after each sync run, or periodically run on a schedule</description>
     </service>
@@ -180,15 +180,15 @@ under the License.
     <service name="runOfflineEntitySync" engine="java"
             location="org.apache.ofbiz.entityext.synchronization.EntitySyncServices" invoke="runOfflineEntitySync" auth="true" use-transaction="false">
         <attribute name="entitySyncId" type="String" mode="IN" optional="false"/>
-        <attribute name="fileName" type="String" mode="IN" optional="true"><!-- if not specified defaults to "offline_entitySync-" + entitySyncId + "-" + [current date/time in yyyyMMddHHmmss format] + ".xml" --></attribute>
-    </service>
+        <attribute name="fileName" type="String" mode="IN" optional="true"--><!-- if not specified defaults to "offline_entitySync-" + entitySyncId + "-" + [current date/time in yyyyMMddHHmmss format] + ".xml" --><!--/attribute-->
+    <!--/service>
     <service name="loadOfflineEntitySyncData" engine="java"
             location="org.apache.ofbiz.entityext.synchronization.EntitySyncServices" invoke="loadOfflineSyncData" auth="true" use-transaction="false">
         <attribute name="xmlFileName" type="String" mode="IN" optional="false"/>
-    </service>
+    </service-->
 
     <!-- Entity Remote Synchronization services -->
-    <service name="runEntitySync" engine="java" auth="true" use-transaction="false"
+    <!--service name="runEntitySync" engine="java" auth="true" use-transaction="false"
             location="org.apache.ofbiz.entityext.synchronization.EntitySyncServices" invoke="runEntitySync">
         <description>Run Entity Sync</description>
         <attribute name="entitySyncId" type="String" mode="IN" optional="false"/>
@@ -209,10 +209,10 @@ under the License.
         <attribute name="toStoreNotUpdated" type="Long" mode="OUT" optional="false"/>
         <attribute name="toRemoveDeleted" type="Long" mode="OUT" optional="false"/>
         <attribute name="toRemoveAlreadyDeleted" type="Long" mode="OUT" optional="false"/>
-    </service>
+    </service-->
 
     <!-- Services for Entity Sync Data Pulling -->
-    <service name="runPullEntitySync" engine="java" auth="true" use-transaction="false"
+    <!--service name="runPullEntitySync" engine="java" auth="true" use-transaction="false"
             location="org.apache.ofbiz.entityext.synchronization.EntitySyncServices" invoke="runPullEntitySync">
         <description>Run Entity Sync Pulling Data From a Remote Server</description>
         <attribute name="entitySyncId" type="String" mode="IN" optional="false"/>
@@ -224,13 +224,13 @@ under the License.
             location="org.apache.ofbiz.entityext.synchronization.EntitySyncServices" invoke="pullAndReportEntitySyncData">
         <description>Pull And Report Entity Sync Data</description>
         <attribute name="entitySyncId" type="String" mode="IN" optional="false"/>
-        <attribute name="delegatorName" type="String" mode="IN" optional="true"/>
+        <attribute name="delegatorName" type="String" mode="IN" optional="true"/-->
         <!-- fields for returned values to store on the calling machine, note that after storing these this service MUST be called with the results to finalize it! -->
-        <attribute name="valuesToCreate" type="List" mode="OUT" optional="true"/>
+        <!--attribute name="valuesToCreate" type="List" mode="OUT" optional="true"/>
         <attribute name="valuesToStore" type="List" mode="OUT" optional="true"/>
-        <attribute name="keysToRemove" type="List" mode="OUT" optional="true"/>
+        <attribute name="keysToRemove" type="List" mode="OUT" optional="true"/-->
         <!-- fields for results of storage on the calling machine -->
-        <attribute name="startDate" type="Timestamp" mode="INOUT" optional="true"/>
+        <!--attribute name="startDate" type="Timestamp" mode="INOUT" optional="true"/>
         <attribute name="toCreateInserted" type="Long" mode="IN" optional="true"/>
         <attribute name="toCreateUpdated" type="Long" mode="IN" optional="true"/>
         <attribute name="toCreateNotUpdated" type="Long" mode="IN" optional="true"/>
@@ -239,10 +239,10 @@ under the License.
         <attribute name="toStoreNotUpdated" type="Long" mode="IN" optional="true"/>
         <attribute name="toRemoveDeleted" type="Long" mode="IN" optional="true"/>
         <attribute name="toRemoveAlreadyDeleted" type="Long" mode="IN" optional="true"/>
-    </service>
+    </service-->
 
     <!-- Services to call store (Push) remotely -->
-    <service name="remoteStoreEntitySyncDataHttp" engine="http" auth="true" use-transaction="false" transaction-timeout="7200"
+    <!--service name="remoteStoreEntitySyncDataHttp" engine="http" auth="true" use-transaction="false" transaction-timeout="7200"
             location="entity-sync-http" invoke="storeEntitySyncData">
         <description>Remotely Store Entity Sync Date</description>
         <implements service="storeEntitySyncData"/>
@@ -251,10 +251,10 @@ under the License.
             location="entity-sync-rmi" invoke="storeEntitySyncData">
         <description>Remotely Store Entity Sync Data</description>
         <implements service="storeEntitySyncData"/>
-    </service>
+    </service-->
 
     <!-- Services to call Pull and Report remotely -->
-    <service name="remotePullAndReportEntitySyncDataHttp" engine="http" auth="true" use-transaction="false"
+    <!--service name="remotePullAndReportEntitySyncDataHttp" engine="http" auth="true" use-transaction="false"
             location="entity-sync-http" invoke="pullAndReportEntitySyncData">
         <description>Remotely Pull And Report Entity Sync Data</description>
         <implements service="pullAndReportEntitySyncData"/>
@@ -263,7 +263,7 @@ under the License.
             location="entity-sync-rmi" invoke="pullAndReportEntitySyncData">
         <description>Remotely Pull And Report Entity Sync Data</description>
         <implements service="pullAndReportEntitySyncData"/>
-    </service>
+    </service-->
 
     <!-- UserAgentType services -->
     <service name="createUserAgentType" default-entity-name="UserAgentType" engine="entity-auto" invoke="create" auth="true">
