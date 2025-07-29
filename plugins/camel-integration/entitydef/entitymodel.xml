@@ -18,10 +18,14 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<component-loader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/component-loader.xsd">
-    <load-components parent-directory="framework"/>
-    <load-components parent-directory="themes"/>
-    <load-components parent-directory="applications"/>
-    <load-components parent-directory="plugins"/>
-</component-loader>
+<entitymodel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/entitymodel.xsd">
+    <!-- ========================================================= -->
+    <!-- ======================== Defaults ======================= -->
+    <!-- ========================================================= -->
+    <title>Entity of Camel-integration Component</title>
+    <description>None</description>
+    <copyright></copyright>
+    <version></version>
+
+</entitymodel>

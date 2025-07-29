@@ -1,0 +1,71 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.ofbiz.camel.component;
+
+import org.apache.camel.Exchange;
+import org.apache.camel.RuntimeExchangeException;
+import org.apache.camel.support.DefaultProducer;
+import org.apache.ofbiz.base.util.Debug;
+import org.apache.camel.util.PropertiesHelper;
+
+import java.util.Map;
+
+/**
+ * The Ofbiz producer.
+ */
+public class OfbizProducer extends DefaultProducer {
+    private static final String MODULE = OfbizProducer.class.getName();
+
+    private final OfbizEndpoint ofbizEndpoint;
+    private final String remaining;
+
+
+    public OfbizProducer(OfbizEndpoint ofbizEndpoint, String remaining) {
+        super(ofbizEndpoint);
+        this.ofbizEndpoint = ofbizEndpoint;
+        this.remaining = remaining;
+    }
+    /**
+     * This is a Javadoc
+     */
+    public void process(Exchange exchange) throws Exception {
+        String serviceName = getServiceName(exchange);
+        Map<String, Object> headers = exchange.getIn().getHeaders();
+        Debug.logInfo("\n*********************************\n headers :  " + headers + "\n*********************************\n", MODULE);
+        Map<String, ? extends Object> parameters = getServiceParameters(headers);
+
+        Debug.logInfo("\n*********************************\n serviceName :  " + serviceName + "\n*********************************\n", MODULE);
+        Debug.logInfo("\n*********************************\n parameters :  " + parameters + "\n*********************************\n", MODULE);
+        Map<String, Object> result = ofbizEndpoint.getDispatcher().runSync(serviceName, parameters);
+        Debug.logInfo("\n*********************************\n result :  " + result + "\n*********************************\n", MODULE);
+
+        exchange.getOut().setBody(result);
+    }
+
+    private String getServiceName(Exchange exchange) {
+        String serviceName = exchange.getIn().getHeader(OfbizConstants.CAMEL_OFBIZ_SERVICE, this.remaining, String.class);
+        if (serviceName == null) {
+            throw new RuntimeExchangeException("Missing Ofbiz service name", exchange);
+        }
+
+        return serviceName;
+    }
+
+    private Map<String, Object> getServiceParameters(Map<String, Object> headers) {
+        return PropertiesHelper.extractProperties(headers, OfbizConstants.CAMEL_OFBIZ_PARAMETERS);
+    }
+}

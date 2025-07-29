@@ -1015,11 +1015,11 @@ public class GenericDelegator implements Delegator {
             // doCacheClear
             ecaRunner.evalRules(EntityEcaHandler.EV_CACHE_CLEAR, EntityEcaHandler.OP_REMOVE, primaryKey, false);
             this.clearCacheLine(primaryKey);
-
+/*
             if (SAVE_ENTITY_SYNC_REMOVE_INFO) {
-                //this.saveEntitySyncRemoveInfo(primaryKey);
+                this.saveEntitySyncRemoveInfo(primaryKey);
             }
-
+*/
             if (testMode) {
                 if (removedEntity != null) {
                     storeForTestRollback(new TestOperation(OperationType.DELETE, removedEntity));

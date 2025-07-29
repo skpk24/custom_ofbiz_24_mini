@@ -18,10 +18,8 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<component-loader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/component-loader.xsd">
-    <load-components parent-directory="framework"/>
-    <load-components parent-directory="themes"/>
-    <load-components parent-directory="applications"/>
-    <load-components parent-directory="plugins"/>
-</component-loader>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Form" xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+
+</forms>

@@ -18,10 +18,19 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<component-loader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/component-loader.xsd">
-    <load-components parent-directory="framework"/>
-    <load-components parent-directory="themes"/>
-    <load-components parent-directory="applications"/>
-    <load-components parent-directory="plugins"/>
-</component-loader>
+<!-- Keep only English language here because of OFBIZ-13095 -->
+
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
+    <property key="Camel-integrationApplication">
+        <value xml:lang="en">Camel-integration Application</value>
+    </property>
+    <property key="Camel-integrationCompanyName">
+        <value xml:lang="en">OFBiz: Camel-integration</value>
+    </property>
+    <property key="Camel-integrationCompanySubtitle">
+        <value xml:lang="en">Part of the Apache OFBiz Family of Open Source Software</value>
+    </property>
+    <property key="Camel-integrationViewPermissionError">
+        <value xml:lang="en">You are not allowed to view this page.</value>
+    </property>
+</resource>

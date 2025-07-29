@@ -1,0 +1,222 @@
+package org.apache.ofbiz.camel.component;
+
+import org.apache.camel.Endpoint;
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
+import org.apache.camel.impl.DefaultConsumer;
+import org.apache.ofbiz.base.util.Debug;
+import org.apache.ofbiz.base.util.UtilMisc;
+import org.apache.ofbiz.entity.Delegator;
+import org.apache.ofbiz.entity.GenericValue;
+import org.apache.ofbiz.service.DispatchContext;
+import org.apache.ofbiz.service.LocalDispatcher;
+import org.apache.ofbiz.service.ServiceUtil;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * OFBiz Service Consumer that extends DefaultConsumer to integrate Apache Camel with OFBiz services
+ */
+public class OFBizServiceConsumer extends DefaultConsumer {
+    
+    private static final String MODULE = OFBizServiceConsumer.class.getName();
+    
+    private final OFBizEndpoint endpoint;
+    private final LocalDispatcher dispatcher;
+    private final Delegator delegator;
+    private final GenericValue userLogin;
+    private ScheduledExecutorService executorService;
+    private ScheduledFuture<?> scheduledTask;
+    private final String remaining;
+    
+    public OFBizServiceConsumer(OFBizServiceEndpoint endpoint, Processor processor) {
+        super(endpoint, processor);
+        this.endpoint = endpoint;
+        this.remaining = remaining;
+        this.dispatcher = endpoint.getDispatcher();
+        this.delegator = endpoint.getDelegator();
+        this.userLogin = endpoint.getUserLogin();
+    }
+    
+    protected void doStart() throws Exception {
+        super.doStart();
+        Debug.logInfo("Starting OFBiz Service Consumer for service: " + endpoint.getServiceName(), MODULE);
+        
+        // Start polling or listening mechanism based on configuration
+        if (endpoint.isPollingEnabled()) {
+            startPolling();
+        } else {
+            startListening();
+        }
+    }
+    
+    protected void doStop() throws Exception {
+        super.doStop();
+        Debug.logInfo("Stopping OFBiz Service Consumer for service: " + endpoint.getServiceName(), MODULE);
+        
+        if (scheduledTask != null && !scheduledTask.isCancelled()) {
+            scheduledTask.cancel(true);
+        }
+        
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
+        }
+    }
+    
+    /**
+     * Start polling mechanism for consuming messages
+     */
+    private void startPolling() {
+        executorService = getEndpoint().getCamelContext().getExecutorServiceManager()
+            .newScheduledThreadPool(this, "OFBizServiceConsumer", 1);
+            
+        int delay = endpoint.getPollingDelay();
+        scheduledTask = executorService.scheduleWithFixedDelay(
+            this::pollForMessages, 
+            delay, 
+            delay, 
+            TimeUnit.MILLISECONDS
+        );
+    }
+    
+    /**
+     * Start listening mechanism (for event-driven consumption)
+     */
+    private void startListening() {
+        // Implement event-driven listening if needed
+        // This could involve JMS, database triggers, or other event mechanisms
+        Debug.logInfo("Event-driven listening not implemented in this example", MODULE);
+    }
+    
+    /**
+     * Poll for messages/data to process
+     */
+    private void pollForMessages() {
+        try {
+            // Example: Query for pending records or invoke a service to get data
+            Map<String, Object> serviceContext = prepareServiceContext();
+            
+            // Call OFBiz service to get data
+            Map<String, Object> serviceResult = dispatcher.runSync(endpoint.getServiceName(), serviceContext);
+            
+            if (ServiceUtil.isSuccess(serviceResult)) {
+                processServiceResult(serviceResult);
+            } else {
+                Debug.logError("Service call failed: " + ServiceUtil.getErrorMessage(serviceResult), MODULE);
+            }
+            
+        } catch (Exception e) {
+            Debug.logError(e, "Error polling for messages in OFBizServiceConsumer", MODULE);
+            getExceptionHandler().handleException("Error polling for messages", e);
+        }
+    }
+    
+    /**
+     * Prepare service context with parameters from endpoint configuration
+     */
+    private Map<String, Object> prepareServiceContext() {
+        Map<String, Object> context = new HashMap<>();
+        context.put("userLogin", userLogin);
+        
+        // Add endpoint-specific parameters
+        Map<String, Object> parameters = endpoint.getServiceParameters();
+        if (parameters != null) {
+            context.putAll(parameters);
+        }
+        
+        // Add any additional context parameters
+        context.put("locale", endpoint.getLocale());
+        context.put("timeZone", endpoint.getTimeZone());
+        
+        return context;
+    }
+    
+    /**
+     * Process the service result and create Camel exchange
+     */
+    private void processServiceResult(Map<String, Object> serviceResult) throws Exception {
+        // Extract data from service result
+        Object data = serviceResult.get("resultData"); // Adjust based on your service output
+        
+        if (data != null) {
+            // Create Camel exchange
+            Exchange exchange = getEndpoint().createExchange();
+            
+            // Set message body
+            exchange.getIn().setBody(data);
+            
+            // Set headers with service result metadata
+            exchange.getIn().setHeader("OFBiz.ServiceName", endpoint.getServiceName());
+            exchange.getIn().setHeader("OFBiz.ResponseMessage", serviceResult.get("responseMessage"));
+            exchange.getIn().setHeader("OFBiz.SuccessMessage", serviceResult.get("successMessage"));
+            
+            // Add custom headers from endpoint configuration
+            Map<String, Object> headers = endpoint.getCustomHeaders();
+            if (headers != null) {
+                for (Map.Entry<String, Object> header : headers.entrySet()) {
+                    exchange.getIn().setHeader(header.getKey(), header.getValue());
+                }
+            }
+            
+            // Process the exchange
+            try {
+                getProcessor().process(exchange);
+                Debug.logInfo("Successfully processed exchange for service: " + endpoint.getServiceName(), MODULE);
+            } catch (Exception e) {
+                Debug.logError(e, "Error processing exchange for service: " + endpoint.getServiceName(), MODULE);
+                getExceptionHandler().handleException("Error processing exchange", exchange, e);
+            }
+        }
+    }
+    
+    /**
+     * Handle individual message consumption (can be called externally)
+     */
+    public void consumeMessage(Object messageData) throws Exception {
+        Exchange exchange = getEndpoint().createExchange();
+        exchange.getIn().setBody(messageData);
+        
+        // Add standard OFBiz headers
+        exchange.getIn().setHeader("OFBiz.ServiceName", endpoint.getServiceName());
+        exchange.getIn().setHeader("OFBiz.UserLogin", userLogin);
+        exchange.getIn().setHeader("OFBiz.Delegator", delegator);
+        exchange.getIn().setHeader("OFBiz.Dispatcher", dispatcher);
+        
+        getProcessor().process(exchange);
+    }
+    
+    /**
+     * Invoke OFBiz service directly with exchange data
+     */
+    public Map<String, Object> invokeOFBizService(Exchange exchange) throws Exception {
+        Map<String, Object> serviceContext = new HashMap<>();
+        serviceContext.put("userLogin", userLogin);
+        
+        // Extract parameters from exchange
+        Object body = exchange.getIn().getBody();
+        if (body instanceof Map) {
+            serviceContext.putAll((Map<String, Object>) body);
+        }
+        
+        // Add headers as service parameters if configured
+        if (endpoint.isUseHeadersAsParameters()) {
+            Map<String, Object> headers = exchange.getIn().getHeaders();
+            for (Map.Entry<String, Object> header : headers.entrySet()) {
+                if (!header.getKey().startsWith("Camel") && !header.getKey().startsWith("OFBiz")) {
+                    serviceContext.put(header.getKey(), header.getValue());
+                }
+            }
+        }
+        
+        // Call the service
+        return dispatcher.runSync(endpoint.getServiceName(), serviceContext);
+    }
+    
+    public OFBizServiceEndpoint getEndpoint() {
+        return endpoint;
+    }
+}

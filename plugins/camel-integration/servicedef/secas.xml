@@ -18,10 +18,13 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<component-loader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/component-loader.xsd">
-    <load-components parent-directory="framework"/>
-    <load-components parent-directory="themes"/>
-    <load-components parent-directory="applications"/>
-    <load-components parent-directory="plugins"/>
-</component-loader>
+<service-eca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/service-eca.xsd">
+
+    <eca service="createPerson" event="return">
+        <set field-name="endpoint" value="direct:yourCamelRoute"/>
+        <set field-name="body" env-name="partyId"/>
+        <set field-name="headers" env-name="${parameters}"/>
+        <action service="sendCamelMessage" mode="sync" run-as-user="system"/>
+    </eca>
+</service-eca>

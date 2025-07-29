@@ -28,7 +28,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -44,7 +43,6 @@ import java.util.TreeSet;
 import java.util.Vector;
 import java.util.WeakHashMap;
 
-import javax.xml.bind.DatatypeConverter;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.ofbiz.base.util.Debug;
@@ -343,8 +341,10 @@ public class XmlSerializer {
                  * Fallback is java.sql.Timestamp because it has been this way all the time.
                  */
                 try {
-                    Calendar cal = DatatypeConverter.parseDate(valStr);
-                    return new java.sql.Timestamp(cal.getTimeInMillis());
+                    //Calendar cal = DatatypeConverter.parseDate(valStr);
+                    //return new java.sql.Timestamp(cal.getTimeInMillis());
+                    java.sql.Timestamp timestamp = java.sql.Timestamp.valueOf(valStr);
+                    return timestamp.getTime();
                 } catch (Exception e) {
                     Debug.logWarning("sql-Timestamp does not conform to XML Schema definition, try java.sql.Timestamp format", MODULE);
                     return java.sql.Timestamp.valueOf(valStr);
